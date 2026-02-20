@@ -108,6 +108,7 @@ async function generateFinalPhoto() {
   await updateSubmission(photoStore.currentSubmissionId, 
         {emailed : isDone.value}
     )
+    
 }
 
 
@@ -205,12 +206,15 @@ function toHome(){
         <div class="col-span-4 border-r-2 border-font flex items-center justify-center py-10">
           <img :src="previewPhoto" alt="" class="rounded-2xl">
         </div>
+        <div class="col-span-2 flex flex-col items-center justify-center py-10"
+            v-show="isCreated">
 
-        <div class="col-span-2  flex-col flex py-10" v-show="isCreated">
-          <QrDisplay
-            :value="photoStore.currentSubmissionId"
-            class="mx-auto"
-          />
+            <div class="w-[300px] h-[300px] flex items-center justify-center">
+                <QrDisplay
+                :value="photoStore.currentSubmissionId"
+                />
+            </div>
+
         </div>
       </div>
   </div>
