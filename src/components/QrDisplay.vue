@@ -12,10 +12,11 @@ const props = defineProps({
 <template>
   <div class="p-4 rounded-xl shadow">
     <QrcodeVue
-      :value="`https://dbooth.vercel.app/result/${props.value}`"
-      :size="300"
-      level="H"
-    />
+  :value="`https://dbooth.vercel.app/result/${props.value}`"
+  :size="300"
+  level="H"
+  render-as="canvas"
+/>
     <p class="text-xl text-font font-serif mt-2 text-center">
       Scan untuk download foto
     </p>

@@ -207,12 +207,12 @@ function toHome(){
           <img :src="previewPhoto" alt="" class="rounded-2xl">
         </div>
 
-        <div class="col-span-2  flex-col flex py-10">
-          <QrDisplay
-            :value="photoStore.currentSubmissionId"
-            class="mx-auto"
-          />
+        <div class="col-span-2 flex items-center justify-center py-10">
+        <div class="w-[300px] h-[300px] shrink-0">
+            <QrDisplay :value="photoStore.currentSubmissionId" />
+        </div>
         </div>
       </div>
   </div>
 </template>
+
