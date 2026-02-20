@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: "Sunday"; 
+  src: url("/event/zidni-aike/font/Sunday-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+    --font-sunday:"Sunday";
+    --color-bg:#f7f1eb;
+    --color-font : #8e2d2d;
+    --color-additional: #545454;
+}
