@@ -55,7 +55,7 @@ onMounted(async() => {
 })
 
 function toHome(){
-  sessionStore.setEvent("home")
+  sessionStore.setStep("home")
   router.push("/")
 }
 
