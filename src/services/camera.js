@@ -22,11 +22,30 @@ export function stopCamera() {
 
 export function capturePhoto(videoEl) {
   const canvas = document.createElement('canvas')
-  canvas.width = videoEl.videoWidth
-  canvas.height = videoEl.videoHeight
+
+  const targetRatio = 750 / 600 // rasio slot kamu
+  const videoRatio = videoEl.videoWidth / videoEl.videoHeight
+
+  let sx = 0
+  let sy = 0
+  let sWidth = videoEl.videoWidth
+  let sHeight = videoEl.videoHeight
+
+  if (videoRatio > targetRatio) {
+    // video terlalu lebar → crop kiri kanan
+    sWidth = videoEl.videoHeight * targetRatio
+    sx = (videoEl.videoWidth - sWidth) / 2
+  } else {
+    // video terlalu tinggi → crop atas bawah
+    sHeight = videoEl.videoWidth / targetRatio
+    sy = (videoEl.videoHeight - sHeight) / 2
+  }
+
+  canvas.width = sWidth
+  canvas.height = sHeight
 
   const ctx = canvas.getContext('2d')
-  ctx.drawImage(videoEl, 0, 0)
+  ctx.drawImage(videoEl, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight)
 
   return canvas.toDataURL('image/png')
 }
