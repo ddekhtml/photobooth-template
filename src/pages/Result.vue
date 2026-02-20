@@ -202,11 +202,12 @@ function toHome(){
       <div class="font-sunday text-6xl text-font text-center" @click="next">
         DOWNLOAD PHOTO
       </div>
-      <div class="grid grid-cols-6 border-y-2 border-font mt-10  items-center">
-        <div class="col-span-4 border-r-2 border-font flex items-center justify-center py-10">
+    <div class="grid grid-cols-6 border-y-2 border-maroon mt-10  items-stretch">
+        <div class="col-span-4 border-r-2 border-maroon flex items-center justify-center py-10">
           <img :src="previewPhoto" alt="" class="rounded-2xl">
         </div>
-        <div class="col-span-2  flex-col flex py-10" v-show="isCreated">
+
+        <div class="col-span-2  flex-col flex py-10">
           <QrDisplay
             :value="photoStore.currentSubmissionId"
             class="mx-auto"
