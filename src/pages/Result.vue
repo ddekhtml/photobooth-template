@@ -14,6 +14,7 @@ import {
 import { updateSubmission } from '../services/indexesdb'
 import { createBaseOnce, uploadPhotoAndInsert } from '../services/supabase/upload'
 import { base64ToBlob } from '../services/supabase/blob'
+import QrCodeDisplay from '../components/QrCodeDisplay.vue'
 
 const photoStore = usePhotoStore()
 const sessionStore = useSessionStore()
@@ -106,7 +107,7 @@ async function generateFinalPhoto() {
     }
   isDone.value = true    
   await updateSubmission(photoStore.currentSubmissionId, 
-        {emailed : isDone.value}
+        {emailed : true}
     )
     
 }
@@ -185,8 +186,10 @@ function toHome(){
       >
         <i class="pi pi-spin pi-spinner text-font text-2xl"></i>
       </div>
+
+    <!-- PRINT BUTTON -->
     <button
-      v-else-if="isDone && !isPrint"
+      v-else-if="!isPrint&& isDone"
       @click="next"
       class="ml-auto mr-6 mt-2 px-6 py-2
             bg-font text-white font-serif text-lg
@@ -199,20 +202,22 @@ function toHome(){
 
 
     </div>
-      <div class="font-sunday text-6xl text-font text-center" @click="next">
+      <div class="font-sunday text-6xl text-font text-center">
         DOWNLOAD PHOTO
       </div>
-    <div class="grid grid-cols-6 border-y-2 border-maroon mt-10  items-stretch">
-        <div class="col-span-4 border-r-2 border-maroon flex items-center justify-center py-10">
+      <div class="grid grid-cols-6 border-y-2 border-font mt-10  items-stretch">
+        <div class="col-span-4 border-r-2 border-font flex items-center justify-center py-10">
           <img :src="previewPhoto" alt="" class="rounded-2xl">
         </div>
 
-        <div class="col-span-2 flex items-center justify-center py-10">
-        <div class="w-[300px] h-[300px] shrink-0">
-            <QrDisplay :value="photoStore.currentSubmissionId" />
-        </div>
+        <div class="col-span-2  flex-col flex py-10 justify-center mx-auto gap-y-5">
+          <QrCodeDisplay
+            :uuid="photoStore.currentSubmissionId"
+            class="mx-auto"
+          />
+
+          <div class="w-fit text-center bg-font text-bg  rounded-2xl px-5 text-xl text-serif font-serif py-1 ">Scan QR untuk download photo</div>
         </div>
       </div>
   </div>
 </template>
-

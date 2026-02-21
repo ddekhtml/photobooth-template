@@ -112,7 +112,7 @@ function setevent(){
             <!-- Frame -->
             <td class="p-3 text-center">
               <span v-if="item.selected_frame">
-                {{ item.selected_frame }}
+                {{ item.selected_frame.id }}
               </span>
               <span v-else class="opacity-50">null</span>
             </td>

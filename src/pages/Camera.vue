@@ -15,13 +15,13 @@ const sessionStore = useSessionStore()
 const videoRef = ref(null)
 const countdown = ref(0)
 const scaleWidth = computed(() => {
-  const slotWidth = photoStore.selectedFrame?.slots?.[1]?.width
+  const slotWidth = photoStore.selectedFrame?.slots?.[0]?.width
   if (!slotWidth) return 1
 
   return 750 / slotWidth
 })
 const scaleHeight = computed(() => {
-  const slotHeight = photoStore.selectedFrame?.slots?.[1]?.height
+  const slotHeight = photoStore.selectedFrame?.slots?.[0]?.height
   if (!slotHeight) return 1
 
   return 560 / slotHeight
