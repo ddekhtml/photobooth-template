@@ -9,7 +9,7 @@ export const usePhotoStore = defineStore('photo', {
         name: 'Normal',
         css: ''
     },
-    filteredPhoto: [],
+    filteredPhoto:null,
     currentSubmissionId : null, 
     created: null,
     bucket_id : null,

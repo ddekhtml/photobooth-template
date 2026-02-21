@@ -88,27 +88,32 @@ async function generateFinalPhoto() {
     resultImage.value ,
     ...photoStore.filteredPhoto           
   ]
-  
-  await createBaseOnce(photoStore.currentSubmissionId, sessionStore.eventName, photoStore.bucket_id)
-  isCreated.value=true
-  for (let index = 0; index < photosToSend.length; index++) {
-      const photo = photosToSend[index]
-      try {
-        await uploadPhotoAndInsert({
-          photo,
-          baseId: photoStore.currentSubmissionId,
-          bucket: photoStore.bucket_id,
-          index
-        })
-      } catch (err) {
-        console.error('FAILED AT INDEX', index, err)
-        break 
+  try{
+    await createBaseOnce(photoStore.currentSubmissionId, sessionStore.eventName, photoStore.bucket_id)
+    isCreated.value=true
+    for (let index = 0; index < photosToSend.length; index++) {
+        const photo = photosToSend[index]
+        try {
+          await uploadPhotoAndInsert({
+            photo,
+            baseId: photoStore.currentSubmissionId,
+            bucket: photoStore.bucket_id,
+            index
+          })
+        } catch (err) {
+          console.error('FAILED AT INDEX', index, err)
+          break 
+        }
       }
-    }
-  isDone.value = true    
-  await updateSubmission(photoStore.currentSubmissionId, 
-        {emailed : true}
-    )
+      isDone.value = true    
+      await updateSubmission(photoStore.currentSubmissionId, 
+            {emailed : true}
+        )
+  }
+  catch{
+    isDone.value=true 
+  }
+  
     
 }
 
@@ -122,9 +127,9 @@ onMounted(async () => {
   }
   startPreview()
   await new Promise(r => setTimeout(r, 200))
-
+  console.log(photoStore.filteredPhoto)
   await updateSubmission(photoStore.currentSubmissionId, {
-    filtered_photos: photoStore.filteredPhotos,
+    filtered_photos: JSON.parse(JSON.stringify(photoStore.filteredPhoto)),
     selected_filter: photoStore.selectedFilter
   })
   await generateFinalPhoto()
@@ -207,7 +212,7 @@ function toHome(){
       </div>
       <div class="grid grid-cols-6 border-y-2 border-font mt-10  items-stretch">
         <div class="col-span-4 border-r-2 border-font flex items-center justify-center py-10">
-          <img :src="previewPhoto" alt="" class="rounded-2xl">
+          <img :src="previewPhoto" alt="" class="rounded-2xl w-[560px]">
         </div>
 
         <div class="col-span-2  flex-col flex py-10 justify-center mx-auto gap-y-5">
@@ -216,7 +221,7 @@ function toHome(){
             class="mx-auto"
           />
 
-          <div class="w-fit text-center bg-font text-bg  rounded-2xl px-5 text-xl text-serif font-serif py-1 ">Scan QR untuk download photo</div>
+          <div class="w-fit text-center bg-font text-bg  rounded-2xl px-6 text-xl text-serif font-serif py-1 ">Scan QR untuk download photo</div>
         </div>
       </div>
   </div>

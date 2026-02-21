@@ -134,7 +134,7 @@ function setevent(){
             <!-- Filter -->
             <td class="p-3 text-center">
               <span v-if="item.selected_filter">
-                {{ item.selected_filter.id }}
+                {{ item.selected_filter }}
               </span>
               <span v-else class="opacity-50">null</span>
             </td>
