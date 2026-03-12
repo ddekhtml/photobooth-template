@@ -186,7 +186,7 @@ function toHome(){
 
 </script>
 <template>
-  <<div
+  <div
     class="h-dvh w-full flex flex-col overflow-hidden relative"
     :style="backgroundStyle"
   >

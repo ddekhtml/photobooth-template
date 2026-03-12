@@ -88,7 +88,7 @@ async function startEvent() {
 
    
     <div
-      class="mt-100 self-center bg-font font-serif text-bg text-4xl 
+      class="mt-150 self-center bg-font font-serif text-bg text-4xl 
              px-20 pt-4 pb-5 rounded-full cursor-pointer 
              hover:scale-105 transition"
       @click="startEvent"
