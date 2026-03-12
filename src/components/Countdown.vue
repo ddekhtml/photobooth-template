@@ -8,7 +8,7 @@ defineProps({
   <div
     v-if="value > 0"
     class="absolute inset-0 flex items-center justify-center
-           bg-black/40 text-bg text-9xl font-bold"
+           bg-black/40 text-font text-9xl font-bold"
   >
     {{ value }}
   </div>

@@ -1,9 +1,19 @@
 <script setup>
-import { ref, onMounted, onUnmounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onUnmounted, computed,onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePhotoStore } from '../stores/photoStore'
 import { useSessionStore } from '../stores/sessionStore'
 import { getSubmissionById } from '../services/indexesdb'
+
+const session = useSessionStore()
+const backgroundStyle = computed(() => {
+  return {
+    backgroundImage: `url(/event/${session.eventId}/ui/second-bg.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }
+})
 
 const router = useRouter()
 const countdown = ref(5)
@@ -30,7 +40,10 @@ onBeforeUnmount(()=>{
 </script>
 
 <template>
-  <div class="h-dvh w-full bg-bg flex flex-col">
+  <div
+    class="h-dvh w-full flex flex-col text-font font-sunday overflow-hidden relative"
+    :style="backgroundStyle"
+  >
     <div class="my-auto">
         <div class="font-sunday text-7xl text-font text-center">
           TERIMA KASIH

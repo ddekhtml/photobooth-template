@@ -1,7 +1,7 @@
-const modules = import.meta.glob('/src/event/*/frames.js')
+const modules = import.meta.glob('/src/event/4r/*/frames.js')
 
 export async function loadFrames(eventId) {
-  const path = `/src/event/${eventId}/frames.js`
+  const path = `/src/event/4r/${eventId}/frames.js`
 
 //   console.log('Available modules:', Object.keys(modules))
 //   console.log('Looking for:', path)

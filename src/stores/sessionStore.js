@@ -9,8 +9,8 @@ export const useSessionStore = defineStore('session', {
   }),
 
   actions: {
-    setEvent({id, name, date }) {
-        this.eventId= id
+    setEvent(id, name, date) {
+      this.eventId= id
       this.eventName = name
       this.eventDate = date
     },

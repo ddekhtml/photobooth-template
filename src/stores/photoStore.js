@@ -48,6 +48,6 @@ export const usePhotoStore = defineStore('photo', {
     },
     setBucket(bucket){
       this.bucket_id= bucket
-    }
+    },
   }
 })

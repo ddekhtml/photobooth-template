@@ -53,9 +53,7 @@ const routes = [
   {
     path:'/event', 
     component: Event
-  }, {
-    
-  }
+  }, 
 ]
 
 const router = createRouter({

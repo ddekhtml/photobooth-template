@@ -1,8 +1,8 @@
 export const frames = [ 
     {
-        id: 'Red', 
+        id: 'Red 4r', 
         name : 'Red', 
-        image : '/event/zidni-aike/frames/red.png', 
+        image : '/event/zidni-aike/frames/4r/red.png', 
         photoCount : '6', 
         canvas: {
             width: 1205,
@@ -48,9 +48,9 @@ export const frames = [
         ]
     }, 
     {
-        id: 'folklore', 
+        id: 'folklore 4r', 
         name : 'Folklore', 
-        image : '/event/zidni-aike/frames/folklore.png', 
+        image : '/event/zidni-aike/frames/4r/folklore.png', 
         photoCount : '6', 
         canvas: {
             width: 1205,
@@ -96,9 +96,9 @@ export const frames = [
         ]
     }, 
     {
-        id: 'lover', 
+        id: 'lover 4r', 
         name : 'lover', 
-        image : '/event/zidni-aike/frames/lover.png', 
+        image : '/event/zidni-aike/frames/4r/lover.png', 
         photoCount : '6', 
         canvas: {
             width: 1205,

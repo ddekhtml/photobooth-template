@@ -8,6 +8,14 @@ import { useSessionStore } from '../stores/sessionStore'
 import { applyFilterToImage } from '../services/filter'
 import { getSubmissionById, updateSubmission } from '../services/indexesdb'
 
+const backgroundStyle = computed(() => {
+  return {
+    backgroundImage: `url(/event/${sessionStore.eventId}/ui/second-bg.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }
+})
 const router = useRouter()
 const photoStore = usePhotoStore()
 const sessionStore = useSessionStore()
@@ -22,21 +30,20 @@ function selectFilter(filter) {
 }
 async function next() {
   const result = []
-    for (const photo of photoStore.rawPhotos) {
+  for (const photo of photoStore.rawPhotos) {
         const filtered = await applyFilterToImage(
         photo,
         activeFilter.value?.css || ''
         )
         result.push(filtered)
-    }
+  }
+
   photoStore.setFilteredPhotos(result)
   sessionStore.step = 'result'
   router.push('/result')
 }
 
 onMounted(async() => {
-    console.log(`filter ${useSessionStore().eventName}`)
-
   if (!photoStore.currentSubmissionId){
     sessionStore.setStep('home')
     router.push('/')
@@ -61,7 +68,10 @@ function toHome(){
 
 </script>
 <template>
-  <div class="h-dvh w-full overflow-hidden text-font">
+  <div
+    class="h-dvh w-full flex flex-col overflow-hidden relative"
+    
+  >
     <div class="flex flex-row">
       <i class="pi pi-times text-font text-xl m-2" @click="toHome"></i>
       <i class="pi pi-arrow-right text-font text-2xl ml-auto mr-7 mt-2" @click="next"></i>

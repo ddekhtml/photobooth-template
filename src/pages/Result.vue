@@ -3,7 +3,6 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePhotoStore } from '../stores/photoStore'
 import { useSessionStore } from '../stores/sessionStore'
-import QrDisplay from '../components/QrDisplay.vue'
 import {
   createCanvas,
   drawFrame,
@@ -11,7 +10,7 @@ import {
   exportCanvas,
   destroyCanvas
 } from '../services/canvas'
-import { updateSubmission } from '../services/indexesdb'
+import { getSubmissionById, updateSubmission } from '../services/indexesdb'
 import { createBaseOnce, uploadPhotoAndInsert } from '../services/supabase/upload'
 import { base64ToBlob } from '../services/supabase/blob'
 import QrCodeDisplay from '../components/QrCodeDisplay.vue'
@@ -25,6 +24,15 @@ const isCreated = ref(false)
 const previewIndex = ref(0)
 let previewInterval = null
 
+const backgroundStyle = computed(() => {
+  return {
+    backgroundImage: `url(/event/${sessionStore.eventId}/ui/second-bg.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }
+})
+
 const previewPhoto = computed(() =>
   photoStore.filteredPhoto?.[previewIndex.value]
 )
@@ -32,7 +40,6 @@ const previewPhoto = computed(() =>
 let countdownTimer = null
 
 const resultImage = ref(null)
-
 
 function startPreview() {
   previewInterval = setInterval(() => {
@@ -105,7 +112,8 @@ async function generateFinalPhoto() {
           break 
         }
       }
-      isDone.value = true    
+      isDone.value = true   
+      console.log(isDone.value) 
       await updateSubmission(photoStore.currentSubmissionId, 
             {emailed : true}
         )
@@ -117,23 +125,20 @@ async function generateFinalPhoto() {
     
 }
 
-
 onMounted(async () => {
-    console.log(`mount result ${useSessionStore().eventName}`)
-
   if (!photoStore.filteredPhoto?.length) {
     router.push('/')
     return
   }
   startPreview()
   await new Promise(r => setTimeout(r, 200))
-  console.log(photoStore.filteredPhoto)
   await updateSubmission(photoStore.currentSubmissionId, {
     filtered_photos: JSON.parse(JSON.stringify(photoStore.filteredPhoto)),
     selected_filter: photoStore.selectedFilter
   })
   await generateFinalPhoto()
 })
+
 onUnmounted(() => {
   stopPreview()
   clearInterval(countdownTimer)
@@ -181,7 +186,10 @@ function toHome(){
 
 </script>
 <template>
-  <div class="flex flex-col h-dvh w-full">
+  <<div
+    class="h-dvh w-full flex flex-col overflow-hidden relative"
+    :style="backgroundStyle"
+  >
      <div class="flex flex-row">
       <i class="pi pi-times text-font text-xl m-2" @click="toHome"></i>
           <div
@@ -212,7 +220,7 @@ function toHome(){
       </div>
       <div class="grid grid-cols-6 border-y-2 border-font mt-10  items-stretch">
         <div class="col-span-4 border-r-2 border-font flex items-center justify-center py-10">
-          <img :src="previewPhoto" alt="" class="rounded-2xl w-[560px]">
+          <img :src="previewPhoto" alt="" class="rounded-2xl w-140">
         </div>
 
         <div class="col-span-2  flex-col flex py-10 justify-center mx-auto gap-y-5">

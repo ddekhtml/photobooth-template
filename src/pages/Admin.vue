@@ -83,9 +83,10 @@ function setevent(){
             <th class="p-3">Filter</th>
             <th class="p-3">Filtered Photo</th>
             <th class="p-3">Final Photo</th>
-            <th class="p-3">Printed</th>
             <th class="p-3">Emailed</th>
+            <th class="p-3">Printed</th>
             <th class="p-3">Bucket</th>
+            <th class="p-3">Type</th>
           </tr>
         </thead>
 
@@ -169,6 +170,9 @@ function setevent(){
             </td>
             <td class="p-3 text-center">
               {{ item.bucket_name }}
+            </td>
+            <td class="p-3 text-center">
+              {{ item.type }}
             </td>
           </tr>
         </tbody>

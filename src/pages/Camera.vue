@@ -9,6 +9,14 @@ import { usePhotoStore } from '../stores/photoStore'
 import { useSessionStore } from '../stores/sessionStore'
 import { getSubmissionById, updateSubmission } from '../services/indexesdb'
 
+const backgroundStyle = computed(() => {
+  return {
+    backgroundImage: `url(/event/${sessionStore.eventId}/ui/second-bg.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }
+})
 const router = useRouter()
 const photoStore = usePhotoStore()
 const sessionStore = useSessionStore()
@@ -71,8 +79,6 @@ function runCountdown() {
 }
 
 onMounted( async () => {
-    console.log(`camera ${useSessionStore().eventName}`)
-
   if (!photoStore.currentSubmissionId){
     sessionStore.setStep('home')
     router.push('/')
@@ -98,7 +104,10 @@ function toHome(){
 
 <template>
   
-  <div class="flex-col w-full h-dvh overflow-hidden flex ">
+  <div
+    class="h-dvh w-full flex flex-col overflow-hidden relative"
+    :style="backgroundStyle"
+  >
       <i class="pi pi-times text-font text-xl m-2" @click="toHome"></i>
       <div
         v-if="photoStore.selectedFrame"

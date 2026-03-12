@@ -10,7 +10,7 @@ const props = defineProps({
 })
 
 const qrValue = computed(() => {
-  return `https://example.com/${props.uuid}`
+  return `https://dbooth.vercel.app/result/${props.uuid}`
 })
 </script>
 
