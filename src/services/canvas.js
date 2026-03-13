@@ -20,9 +20,32 @@ export async function drawFrame(frameImage) {
 export async function drawPhoto(photo, slot) {
   const img = new Image()
   img.src = photo
-  await img.decode() // biar browser benar-benar menunggu di load 
+  await img.decode()
+
+  const imgRatio = img.width / img.height
+  const slotRatio = slot.width / slot.height
+
+  let sx = 0
+  let sy = 0
+  let sWidth = img.width
+  let sHeight = img.height
+
+  if (imgRatio > slotRatio) {
+    // crop kiri kanan
+    sWidth = img.height * slotRatio
+    sx = (img.width - sWidth) / 2
+  } else {
+    // crop atas bawah
+    sHeight = img.width / slotRatio
+    sy = (img.height - sHeight) / 2
+  }
+
   ctx.drawImage(
     img,
+    sx,
+    sy,
+    sWidth,
+    sHeight,
     slot.x,
     slot.y,
     slot.width,
