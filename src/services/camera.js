@@ -23,7 +23,7 @@ export function stopCamera() {
 export function capturePhoto(videoEl) {
   const canvas = document.createElement('canvas')
 
-  const targetRatio = 750 / 600 // rasio slot kamu
+  const targetRatio = 750 / 600
   const videoRatio = videoEl.videoWidth / videoEl.videoHeight
 
   let sx = 0
@@ -45,6 +45,11 @@ export function capturePhoto(videoEl) {
   canvas.height = sHeight
 
   const ctx = canvas.getContext('2d')
+
+  // mirror canvas
+  ctx.translate(canvas.width, 0)
+  ctx.scale(-1, 1)
+
   ctx.drawImage(videoEl, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight)
 
   return canvas.toDataURL('image/png')
