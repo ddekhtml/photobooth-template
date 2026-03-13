@@ -11,9 +11,41 @@ import {
   destroyCanvas
 } from '../services/canvas'
 import { getSubmissionById, updateSubmission } from '../services/indexesdb'
-import { createBaseOnce, uploadPhotoAndInsert } from '../services/supabase/upload'
+import { createBaseOnce, uploadGifAndInsert, uploadPhotoAndInsert } from '../services/supabase/upload'
 import { base64ToBlob } from '../services/supabase/blob'
 import QrCodeDisplay from '../components/QrCodeDisplay.vue'
+
+import GIF from "gif.js"
+
+async function createGif(photos) {
+  return new Promise((resolve) => {
+
+    const gif = new GIF({
+      workers: 2,
+      quality: 10,
+      workerScript: "/gif.worker.js",
+      width: 800,
+      height: 800
+    })
+
+    photos.forEach((photo) => {
+      const img = new Image()
+      img.src = photo
+
+      gif.addFrame(img, {
+        delay: 500
+      })
+    })
+
+    gif.on("finished", (blob) => {
+      const gifUrl = URL.createObjectURL(blob)
+      resolve({ blob, gifUrl })
+    })
+
+    gif.render()
+  })
+}
+
 
 const photoStore = usePhotoStore()
 const sessionStore = useSessionStore()
@@ -87,13 +119,14 @@ async function generateFinalPhoto() {
   await drawFrame(frame.image)
 
   resultImage.value = exportCanvas('image/png', 1, 1)
+  // const { blob, gifUrl } = await createGif(photoStore.filteredPhoto)
 
   await updateSubmission(photoStore.currentSubmissionId, {
     final_photo: resultImage.value
   })
   const photosToSend = [
     resultImage.value ,
-    ...photoStore.filteredPhoto           
+    ...photoStore.filteredPhoto, 
   ]
   try{
     await createBaseOnce(photoStore.currentSubmissionId, sessionStore.eventName, photoStore.bucket_id)
@@ -112,6 +145,7 @@ async function generateFinalPhoto() {
           break 
         }
       }
+      // await uploadGifAndInsert(blob, photoStore.currentSubmissionId, photoStore.bucket_id)
       isDone.value = true   
       console.log(isDone.value) 
       await updateSubmission(photoStore.currentSubmissionId, 
@@ -121,6 +155,7 @@ async function generateFinalPhoto() {
   catch{
     isDone.value=true 
   }
+
   
     
 }

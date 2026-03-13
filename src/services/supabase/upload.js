@@ -82,3 +82,44 @@ export async function uploadPhotoAndInsert({
 
   return publicUrl
 }
+export async function uploadGifAndInsert({
+  gifBlob,
+  baseId,
+  bucket
+}) {
+
+  // 1. path file
+  const filePath = `${baseId}/animation.gif`
+
+  // 2. upload ke Supabase Storage
+  const { error: uploadError } = await supabase.storage
+    .from(bucket)
+    .upload(filePath, gifBlob, {
+      contentType: 'image/gif',
+      upsert: false
+    })
+
+  if (uploadError) throw uploadError
+
+  // 3. ambil public URL
+  const { data } = supabase.storage
+    .from(bucket)
+    .getPublicUrl(filePath)
+
+  const publicUrl = data.publicUrl
+
+  // 4. insert ke table photos
+  const { error: photoError } = await supabase
+    .from('photos')
+    .insert([
+      {
+        base_id: baseId,
+        url: publicUrl,
+        type: 'gif'
+      }
+    ])
+
+  if (photoError) throw photoError
+
+  return publicUrl
+}
