@@ -127,6 +127,7 @@ onBeforeUnmount(async () => {
 
 function toHome(){
   stopCamera()
+  sessionStore.setStep("home")
   router.push('/')
 }
 

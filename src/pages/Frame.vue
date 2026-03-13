@@ -42,6 +42,10 @@ onMounted(async () => {
   }
   frames.value = await loadFrames(session.eventId) 
 })
+function toHome(){
+  sessionStore.setStep("home")
+  router.push("/")
+}
 </script>
 
 <template>
@@ -49,16 +53,18 @@ onMounted(async () => {
     class="h-dvh w-full flex flex-col overflow-hidden relative"
     :style="backgroundStyle"
   >  
-    <h1 class="text-font text-center text-6xl font-sunday m-8 mt-25">
+    <div class="flex flex-row">
+      <i class="pi pi-times text-font text-xl m-2" @click="toHome"></i>
+    </div>
+    <h1 class="text-font text-center text-6xl font-sunday m-8 mt-20">
       PILIH FRAME
     </h1>
 
-    <div class="flex flex-row overflow-x-auto bg-bg w-full gap-x-10 scrollbar-hide m-auto justify-center overflow-y-hidden">
-
+    <div class="flex overflow-x-auto gap-x-10 px-10 snap-x  mt-5 snap-mandatory scrollbar-hide">
       <div
         v-for="frame in frames"
         :key="frame.id"
-        class="shrink-0 flex flex-col items-center mb-8"
+        class="shrink-0 flex flex-col items-center mb-8 snap-center"
       >
         <img
           :src="frame.image"

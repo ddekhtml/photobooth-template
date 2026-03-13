@@ -20,7 +20,8 @@ onMounted(async () => {
 const router = useRouter()
 
 function toHome(){
-    router.push('/')
+  session.setStep("home")
+  router.push("/")
 }
 function setevent(){
     router.push('/event')

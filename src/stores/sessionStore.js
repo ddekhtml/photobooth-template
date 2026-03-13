@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useSessionStore = defineStore('session', {
   state: () => ({
-    eventId : "zidni-aike",
-    eventName: "Zidni & Aike",
+    eventId : "merkico",
+    eventName: "Merkico",
     eventDate: null,
     step: 'home',      
   }),

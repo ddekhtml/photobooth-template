@@ -32,6 +32,7 @@ async function save() {
 }
 
 function goHome() {
+  sessionStore.setStep("home")
   router.push('/')
 }
 </script>
