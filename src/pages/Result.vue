@@ -283,6 +283,7 @@ function toHome(){
       <button
         @click="decreasePrint"
         class="w-12 h-12 text-2xl disabled:opacity-30"
+        :disabled="printCount === 1"
       >
       -
       </button>
