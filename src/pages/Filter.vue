@@ -107,7 +107,7 @@ function toHome(){
         'border-transparent': filter.id !== photoStore.selectedFilter
       }"
     />
-    <p class="font-serif text-center text-sm mt-1">
+    <p class="font-serif text-center text-sm mt-1 font-font">
       {{ filter.name }}
     </p>
   </div>

@@ -17,36 +17,19 @@ import QrCodeDisplay from '../components/QrCodeDisplay.vue'
 
 import GIF from "gif.js"
 
-async function createGif(photos) {
-  return new Promise((resolve) => {
-
-    const gif = new GIF({
-      workers: 2,
-      quality: 10,
-      workerScript: "/gif.worker.js",
-      width: 800,
-      height: 800
-    })
-
-    photos.forEach((photo) => {
-      const img = new Image()
-      img.src = photo
-
-      gif.addFrame(img, {
-        delay: 500
-      })
-    })
-
-    gif.on("finished", (blob) => {
-      const gifUrl = URL.createObjectURL(blob)
-      resolve({ blob, gifUrl })
-    })
-
-    gif.render()
-  })
+function increasePrint() {
+  if (printCount.value < 4) {
+    printCount.value++
+  }
 }
 
-
+function decreasePrint() {
+  if (printCount.value > 1) {
+    printCount.value--
+  }
+}
+const showPrintModal = ref(false)
+const printCount = ref(1)
 const photoStore = usePhotoStore()
 const sessionStore = useSessionStore()
 const router = useRouter()
@@ -103,6 +86,21 @@ function addPadding(imageSrc, padLeft, padTop) {
       resolve(canvas.toDataURL('image/png'))
     }
   })
+}
+
+async function confirmPrint() {
+  isPrint.value = true
+  showPrintModal.value = false
+
+  const paddedImage = await addPadding(resultImage.value, 26, 26)
+
+  for (let i = 0; i < printCount.value; i++) {
+    await sendToPrint(paddedImage)
+  }
+
+  stopPreview()
+  sessionStore.step = 'done'
+  router.push('/done')
 }
 
 async function generateFinalPhoto() {
@@ -238,7 +236,7 @@ function toHome(){
     <!-- PRINT BUTTON -->
     <button
       v-else-if="!isPrint&& isDone"
-      @click="next"
+      @click="showPrintModal = true"
       class="ml-auto mr-6 mt-2 px-6 py-2
             bg-font text-white font-serif text-lg
             rounded-full shadow-md
@@ -268,4 +266,61 @@ function toHome(){
         </div>
       </div>
   </div>
+  <!-- PRINT MODAL -->
+<div
+  v-if="showPrintModal"
+  class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 font-serif"
+>
+  <div class="bg-white rounded-2xl p-8 w-80 text-center shadow-xl">
+
+    <div class="text-2xl font-serif mb-6">
+      Print Berapa Lembar?
+    </div>
+
+    <!-- COUNTER -->
+    <div class="flex items-center justify-center gap-6">
+
+      <button
+        @click="decreasePrint"
+        class="w-12 h-12 text-2xl disabled:opacity-30"
+        :disabled="printCount === 1"
+      >
+      -
+      </button>
+
+      <div class="text-3xl font-bold w-10 text-center">
+        {{ printCount }}
+      </div>
+
+      <button
+        @click="increasePrint"
+        class="w-12 h-12 text-2xl disabled:opacity-30"
+        :disabled="printCount === 4"
+      >
+      +
+      </button>
+
+    </div>
+
+    <!-- BUTTON -->
+    <div class="flex justify-center gap-4 mt-8">
+
+      <button
+        @click="showPrintModal = false"
+        class="px-4 py-2 bg-gray-300"
+      >
+        Cancel
+      </button>
+
+      <button
+        @click="confirmPrint"
+        class="px-6 py-2 bg-font text-white"
+      >
+        Print
+      </button>
+
+    </div>
+
+  </div>
+</div>
 </template>
