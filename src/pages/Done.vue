@@ -35,10 +35,8 @@ function startAutoHome() {
 } 
 function skipKeychain() {
   showKeychainModal.value = false
-  startAutoHome()
+  goHome()
 }
-
-let timer = null
 
 function togglePhoto(photo) {
   const index = selectedPhotos.value.indexOf(photo)
@@ -107,7 +105,7 @@ async function generateKeychainPrint() {
 
   await sendToPrint(base64)
 
-  startAutoHome()
+  goHome()
 }
 async function sendToPrint(base64Image) {
   const blob = await base64ToBlob(base64Image)
