@@ -10,40 +10,40 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 45, 
+                x: 44, 
                 y:110, 
-                width : 534, 
-                height : 428
+                width : 535, 
+                height : 430
             }, 
             {
-                x: 45, 
-                y:582, 
-                width : 534, 
-                height : 428
+                x: 44, 
+                y:580, 
+                width : 535, 
+                height : 430
             },
             {
                 x: 45, 
-                y:1054, 
-                width : 534, 
-                height : 428
+                y:1050, 
+                width : 535, 
+                height : 430
             }, 
             {
-                x: 625, 
+                x: 624, 
                 y:110, 
-                width : 534, 
-                height : 428
+                width : 535, 
+                height : 430
             }, 
             {
-                x: 625, 
-                y:582, 
-                width : 534, 
-                height : 428
+                x: 624, 
+                y:580, 
+                width : 535, 
+                height : 430
             },
             {
-                x: 625, 
-                y:1054, 
-                width : 534, 
-                height : 428
+                x: 624, 
+                y:1050, 
+                width : 535, 
+                height : 430
             }
         ]
     }, 
@@ -58,40 +58,40 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 43, 
-                y:108, 
+                x: 45, 
+                y:110, 
                 width : 534, 
                 height : 428
             }, 
             {
-                x: 43, 
-                y:581, 
+                x: 45, 
+                y:580, 
                 width : 534, 
-                height : 428
+                height : 430
             },
             {
-                x: 43, 
-                y:1052, 
+                x: 45, 
+                y:1050, 
                 width : 534, 
-                height : 428
+                height : 430
             }, 
             {
                 x: 625, 
-                y:108, 
+                y:110, 
                 width : 534, 
-                height : 428
+                height : 430
             }, 
             {
                 x: 625, 
-                y:581, 
+                y:580, 
                 width : 534, 
-                height : 428
+                height : 430
             },
             {
                 x: 625, 
-                y:1052, 
+                y:1050, 
                 width : 534, 
-                height : 428
+                height : 430
             }
         ]
     }, 
@@ -106,39 +106,39 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 43, 
-                y:110, 
-                width : 527, 
+                x: 45, 
+                y:112, 
+                width : 531, 
                 height : 425
             }, 
             {
-                x: 43, 
-                y:577, 
-                width : 527, 
+                x: 45, 
+                y:580, 
+                width : 531, 
                 height : 425
             },
             {
-                x: 43, 
-                y:1047, 
-                width : 527, 
+                x: 45, 
+                y:1050, 
+                width : 531, 
                 height : 425
             }, 
             {
-                x: 622, 
-                y:110, 
-                width : 527, 
+                x: 623, 
+                y:112, 
+                width : 531, 
                 height : 425
             }, 
             {
-                x: 622, 
-                y:577, 
-                width : 527, 
+                x: 623, 
+                y:580, 
+                width : 531, 
                 height : 425
             },
             {
-                x: 622, 
-                y:1047, 
-                width : 527, 
+                x: 623, 
+                y:1050, 
+                width : 531, 
                 height : 425
             }
         ]
@@ -155,39 +155,39 @@ export const frames = [
         slots: [
             {
                 x: 45, 
-                y:108, 
-                width : 525, 
-                height : 421
+                y:110, 
+                width : 531, 
+                height : 425
             }, 
             {
                 x: 45, 
-                y:576, 
-                width : 525, 
-                height : 421
+                y:580, 
+                width : 531, 
+                height : 425
             },
             {
                 x: 45, 
-                y:1046, 
-                width : 525, 
-                height : 421
+                y:1050, 
+                width : 531, 
+                height : 425
             }, 
             {
-                x: 625, 
-                y:108, 
-                width : 525, 
-                height : 421
+                x: 624, 
+                y:110, 
+                width : 531, 
+                height : 425
             }, 
             {
-                x: 625, 
-                y:576, 
-                width : 525, 
-                height : 421
+                x: 624, 
+                y:580, 
+                width : 531, 
+                height : 425
             },
             {
-                x: 625, 
-                y:1046, 
-                width : 525, 
-                height : 421
+                x: 624, 
+                y:1050, 
+                width : 531, 
+                height : 425
             }
         ]
     }, 
@@ -202,46 +202,46 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 45, 
-                y:111, 
-                width : 535, 
-                height : 422
+                x: 39, 
+                y:110, 
+                width : 540, 
+                height : 430
             }, 
             {
-                x: 45, 
-                y:581, 
-                width : 535, 
-                height : 422
+                x: 39, 
+                y:580, 
+                width : 540, 
+                height : 430
             },
             {
-                x: 45, 
+                x: 39, 
                 y:1050, 
-                width : 535, 
-                height : 422
+                width : 540, 
+                height : 430
             }, 
             {
-                x: 625, 
-                y:111, 
-                width : 535, 
-                height : 422
+                x: 620, 
+                y:110, 
+                width : 540, 
+                height : 430
             }, 
             {
-                x: 625, 
-                y:581, 
-                width : 535, 
-                height : 422
+                x: 620, 
+                y:580, 
+                width : 540, 
+                height : 430
             },
             {
-                x: 625, 
+                x: 620, 
                 y:1050, 
-                width : 535, 
-                height : 422
+                width : 540, 
+                height : 430
             }
         ]
     }, 
     {
-        id: 'lover 4r', 
-        name : 'lover', 
+        id: 'pink', 
+        name : 'Pink', 
         image : '/event/merkico/frames/pink.png', 
         photoCount : '6', 
         canvas: {
@@ -250,47 +250,47 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 42, 
-                y:135, 
-                width : 548, 
-                height : 415
+                x: 28, 
+                y:136, 
+                width : 636, 
+                height : 425
             }, 
             {
-                x: 42, 
-                y:630, 
-                width : 548, 
-                height : 415
+                x: 28, 
+                y:624, 
+                width : 636, 
+                height : 425
             },
             {
-                x: 42, 
+                x: 28, 
                 y:1099, 
-                width : 548, 
-                height : 415
+                width : 636, 
+                height : 425
             }, 
             {
-                x: 623, 
-                y:135, 
-                width : 548, 
-                height : 415
+                x: 611, 
+                y:136, 
+                width : 636, 
+                height : 425
             }, 
             {
-                x: 623, 
-                y:630, 
-                width : 548, 
-                height : 415
+                x: 611, 
+                y:624, 
+                width : 636, 
+                height : 425
             },
             {
-                x: 623, 
+                x: 611, 
                 y:1099, 
-                width : 548, 
-                height : 415
+                width : 636, 
+                height : 425
             }
         ]
     }, 
     {
         id: 'recap-dump', 
         name : 'Recap Dump', 
-        image : '/event/merkico/frames/recap-dump.png', 
+        image : '/event/merkico/frames/recap-dumpp.png', 
         photoCount : '6', 
         canvas: {
             width: 1205,
@@ -298,40 +298,40 @@ export const frames = [
         }, 
         slots: [
             {
-                x: 35, 
+                x: 39, 
                 y:151, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             }, 
             {
-                x: 35, 
+                x: 39, 
                 y:622, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             },
             {
-                x: 35, 
+                x: 39, 
                 y:1105, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             }, 
             {
                 x: 626, 
                 y:151, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             }, 
             {
                 x: 626, 
                 y:622, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             },
             {
                 x: 626, 
                 y:1105, 
-                width : 523, 
-                height : 399
+                width : 532, 
+                height : 404
             }
         ]
     }, 
