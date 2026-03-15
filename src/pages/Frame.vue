@@ -43,7 +43,7 @@ onMounted(async () => {
   frames.value = await loadFrames(session.eventId) 
 })
 function toHome(){
-  sessionStore.setStep("home")
+  session.setStep("home")
   router.push("/")
 }
 </script>
